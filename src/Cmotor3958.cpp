@@ -38,8 +38,6 @@ void loop() {
 
   prizm.setMotorTargets(360,1979,360,-1979);         // Spin DC motors 1 and 2 at 360 degrees per second back to encoder position "0".   
 
-  delay(8000);    // wait here for 2 seconds, and repeat 
-
-  prizm.resetEncoders();
+  waitForMotors();
                                       
 }

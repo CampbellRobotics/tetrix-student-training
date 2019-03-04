@@ -7,37 +7,30 @@
  * which can be viewed and downloaded at www.TETRIXRobotics.com
  */
 
+#include <PRIZM.h> // Include PRIZM Library
 
-#include <PRIZM.h>    // Include PRIZM Library
+PRIZM prizm; // Instantiate an object named prizm
 
-PRIZM prizm;          // Instantiate an object named prizm
-
-
-void waitForMotors() {
-  while (true) {
-    if (prizm.readMotorBusy(1) || prizm.readMotorBusy(2)) {
-      break;
-    }
+void waitForMotors()
+{
+  while (prizm.readMotorBusy(1) || prizm.readMotorBusy(2))
+  {
   }
   prizm.resetEncoders();
 }
 
-void setup() {
+void setup()
+{
 
   prizm.PrizmBegin(); // Initiates the PRIZM controller - must be called in the setup of each PRIZM sketch
-  
-
 }
 
-void loop() {
+void loop()
+{
 
-  prizm.setMotorTargets(360,3958,360,-3958);   // Spin DC motors 1 and 2 at a constant 360 degrees per second and stop when encoder count reaches 1440 and -1440 respectively.
-                                               // For TETRIX TorqueNADO encoders, 1440 = 1 motor shaft revolution. (1440 / 4 = 360)
-
-  waitForMotors();
-
-  prizm.setMotorTargets(360,1979,360,-1979);         // Spin DC motors 1 and 2 at 360 degrees per second back to encoder position "0".   
+  prizm.setMotorTargets(360, 3960, 360, -3960); // Spin DC motors 1 and 2 at a constant 360 degrees per second and stop when encoder count reaches 1440 and -1440 respectively.
+                                                // For TETRIX TorqueNADO encoders, 1440 = 1 motor shaft revolution. (1440 / 4 = 360)
 
   waitForMotors();
-                                      
+  delay(500);
 }
